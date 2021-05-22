@@ -8,10 +8,12 @@ public class Main {
 	    pc.lecturaBTC("C:\\Users\\Leandro\\Documents\\Teoria de la Informacion\\TPE_Teoria_2021\\Info\\BTC.txt");
 		pc.lecturaETH("C:\\Users\\Leandro\\Documents\\Teoria de la Informacion\\TPE_Teoria_2021\\Info\\ETH.txt");
         CalcularMatrizDePasajes aux = new CalcularMatrizDePasajes();
-        float a[] = aux.getVectorProbabilidades(pc.getVectorBTC());
-        System.out.println(a[0]);
-        System.out.println(a[1]);
-        System.out.println(a[2]);
+//        float a[] = aux.getVectorProbabilidades(pc.getVectorBTC());
+//        System.out.println(a[0]);
+//        System.out.println(a[1]);
+//        System.out.println(a[2]);
+//        
+        aux.getMatrizConjunta(pc.getVectorBTC());
 
     }
 }
