@@ -8,7 +8,6 @@ public class CalcularMatrizDePasajes{
     private Vector<Float> resultado;
     public static int TAM_VEC =  1000;
 
-
     public CalcularMatrizDePasajes() {
         //Metodo constructor de la clase
         resultado = new Vector<>();
@@ -31,11 +30,35 @@ public class CalcularMatrizDePasajes{
         return matriz;
     }
 
+    
 
     public void calcularProbabilidades(Vector<String> cotizaciones){
-
-	        for (int i = 0; i < cotizaciones.size(); i++)
-	            System.out.println(cotizaciones.get(i));
-	    }
+	    for (int i = 0; i < cotizaciones.size(); i++)
+	        System.out.println(cotizaciones.get(i));
+	}
+    
+    public float[] getVectorProbabilidades(Vector<String> cotizaciones){
+    	Vector<Float> cot_float = new Vector<Float>();
+    	int size = cotizaciones.size(); 
+    	float array_prob[] = {0,0,0};
+ 
+    	for (int j=0; j < size;j++){
+    		cot_float.add(j,Float.parseFloat(cotizaciones.get(j)));
+    	}
+    	
+    	for (int i=1; i < size;i++){
+    		if(cot_float.get(i-1) > cot_float.get(i)) {
+    				array_prob[2]++;}
+    			else if(cot_float.get(i-1) < cot_float.get(i))
+    				array_prob[0]++;
+    			else
+    				array_prob[1]++;
+    	}
+    	array_prob[0] = array_prob[0]/(size-1); 
+    	array_prob[1] = array_prob[1]/(size-1); 
+    	array_prob[2] = array_prob[2]/(size-1); 
+    	
+    	return array_prob;
+    }
 }
   
