@@ -69,26 +69,26 @@ public class CalcularMatrizDePasajes{
     public void getMatrizConjunta(Vector<String> cotizaciones) {
     	Vector<Float> cot_float = new Vector<Float>();
     	int size = cotizaciones.size();
+    	int[] array_estados = new int[size];
     	System.out.println("tam"+size);
-    	ArrayList<Integer> array_estados = new ArrayList<Integer>();
-    	
+
 //    	float Mc_prob[][] = {{0,0,0},{0,0,0},{0,0,0}};
     	
     	for (int j=0; j < size;j++){
     		cot_float.add(j,Float.parseFloat(cotizaciones.get(j)));
     	}
     	
-    	for (int g=1; g < 1000;g++){
-    		if(cot_float.get(g-1) < cot_float.get(g)) {
-    			array_estados.add(g, 1);
-    		}else if(cot_float.get(g-1) > cot_float.get(g)) {
-    			array_estados.add(g, 2);
-    		}else {
-    			array_estados.add(g, 0);}
+    	for (int g = 0; g < size-1; g++){
+    		if(cot_float.get(g) > cot_float.get(g+1))
+    			array_estados[g] = 0;
+    		else if(cot_float.get(g) < cot_float.get(g+1))
+    			array_estados[g] = 2;
+    		else
+    			array_estados[g] = 1;
     	}
     	
     	for (int j=0; j < size;j++){
-    		System.out.println(array_estados.get(j));
+    		System.out.print(array_estados[j]+" ,");
     	}
     }
 }
