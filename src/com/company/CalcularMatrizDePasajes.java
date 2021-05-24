@@ -66,29 +66,44 @@ public class CalcularMatrizDePasajes{
     	return array_prob;
     }
     
+    //Se puedo simular con el vector de probabilidad utilizando convergencia
+    //pero al tener el vector de simbolos tambien se puede estimar
+    //mejor seria simular un gran numero de casos.
     public void getMatrizConjunta(Vector<String> cotizaciones) {
     	Vector<Float> cot_float = new Vector<Float>();
     	int size = cotizaciones.size();
-    	int[] array_estados = new int[size];
+    	int[] cadena_de_simbolos = new int[size];
     	System.out.println("tam"+size);
 
-//    	float Mc_prob[][] = {{0,0,0},{0,0,0},{0,0,0}};
+    	float mat_prob[][] = {{0,0,0},{0,0,0},{0,0,0}};
     	
+    	//convierto a flotante el string
     	for (int j=0; j < size;j++){
     		cot_float.add(j,Float.parseFloat(cotizaciones.get(j)));
     	}
     	
+    	//Obtengo cadena de simbolos
     	for (int g = 0; g < size-1; g++){
     		if(cot_float.get(g) > cot_float.get(g+1))
-    			array_estados[g] = 0;
+    			cadena_de_simbolos[g] = 0;
     		else if(cot_float.get(g) < cot_float.get(g+1))
-    			array_estados[g] = 2;
+    			cadena_de_simbolos[g] = 2;
     		else
-    			array_estados[g] = 1;
+    			cadena_de_simbolos[g] = 1;
     	}
     	
-    	for (int j=0; j < size;j++){
-    		System.out.print(array_estados[j]+" ,");
+    	//al coincidir el lugar con el valor se puede generar la matriz de esta forma
+    	for(int i = 1;i<size;i++) {
+    		mat_prob[cadena_de_simbolos[i]][cadena_de_simbolos[i-1]] ++;
+    	}
+    	
+    	//Matriz en porcentaje
+    	for(int i=0 ;i<3;i++) {
+    		System.out.println();
+    		for(int j=0;j<3;j++) {
+    			mat_prob[i][j] = mat_prob[i][j]/(size-1);
+    			System.out.print(mat_prob[i][j]+","); 
+    		}
     	}
     }
 }
