@@ -30,14 +30,6 @@ public class CalcularMatrizDePasajes{
         }
         return matriz;
     }
-
-    
-
-    public void calcularProbabilidades(Vector<String> cotizaciones){
-	    for (int i = 0; i < cotizaciones.size(); i++)
-	        System.out.println(cotizaciones.get(i));
-	}
-    
     
 //  Este metodo devuelve la probabilidad de ocurrencias de acciones
     public float[] getVectorProbabilidades(Vector<String> cotizaciones){
@@ -65,11 +57,12 @@ public class CalcularMatrizDePasajes{
     	
     	return array_prob;
     }
+   
     
     //Se puedo simular con el vector de probabilidad utilizando convergencia
     //pero al tener el vector de simbolos tambien se puede estimar
     //mejor seria simular un gran numero de casos.
-    public void getMatrizConjunta(Vector<String> cotizaciones) {
+    public float[][] getMatrizCondicional(Vector<String> cotizaciones) {
     	Vector<Float> cot_float = new Vector<Float>();
     	int size = cotizaciones.size();
     	int[] cadena_de_simbolos = new int[size];
@@ -105,6 +98,20 @@ public class CalcularMatrizDePasajes{
     			System.out.print(mat_prob[i][j]+","); 
     		}
     	}
+    	
+    	return mat_prob;
+    	
     }
+    
+    public void getMatrizConjunta(Vector<String> cotizaciones){
+    	float[][] aux = new float[cotizaciones.size()][cotizaciones.size()];
+    	for(int i =0;i<cotizaciones.size();i++) {
+    		System.out.println();
+    		for(int j=0;j<cotizaciones.size();j++) {
+    			aux[i][j] = Float.parseFloat(cotizaciones.get(i))*Float.parseFloat(cotizaciones.get(j));
+    			System.out.print(aux[i][j]);
+    		}
+    	}
+	}
 }
   

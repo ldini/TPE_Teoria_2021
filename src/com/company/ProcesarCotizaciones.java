@@ -7,11 +7,15 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 public class ProcesarCotizaciones {
-    private Vector<String> vector_btc = new Vector<>();
-    private Vector<String> vector_eth = new Vector<>();
+    private Vector<String> vector_info = new Vector<>();
+    
+    public ProcesarCotizaciones() {
+    	
+    }
 
-    public void lecturaBTC(String nombreArchivo) {
-        File archivo;
+    public Vector<String> getVectorCotizaciones(String nombreArchivo) {
+        
+    	File archivo;
         FileReader fr;
         BufferedReader br;
 
@@ -22,41 +26,22 @@ public class ProcesarCotizaciones {
 
             String linea;
             while ((linea = br.readLine()) != null) {
-                vector_btc.addElement(linea);
+            	vector_info.addElement(linea);
             }
             br.close();
             fr.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error" + e);
-        }
-    }
-
-    public void lecturaETH(String nombreArchivo) {
-        File archivo;
-        FileReader fr;
-        BufferedReader br;
-
-        try {
-            archivo = new File(nombreArchivo);
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                vector_eth.addElement(linea);
+            
+            Vector<String> aux = new Vector<String>();
+            
+            for (String e : vector_info) {
+            	aux.add(e);
             }
-            br.close();
-            fr.close();
+            
+            return aux;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error" + e);
+            return null;
         }
     }
 
-    public Vector<String> getVectorBTC(){
-        Vector<String> aux = new Vector<>();
-        for (int i = 0; i < vector_btc.size(); i++) {
-            aux.addElement(vector_btc.get(i));
-        }
-        return aux;
-    }
 }
