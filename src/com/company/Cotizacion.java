@@ -10,16 +10,24 @@ import javax.swing.JOptionPane;
 
 public class Cotizacion {
     private Vector<Integer> vector_info;
+	DecimalFormatSymbols separadoresPersonalizados;
+	DecimalFormat formato;
 
+	//Inicializa el Vector con todos los datos del archivo y da formato a los decimales para que se muestre de una forma mas prolija
     public Cotizacion(String file) {
     	vector_info = getVectorCotizaciones(file); 
+    	separadoresPersonalizados = new DecimalFormatSymbols();
+    	separadoresPersonalizados.setDecimalSeparator('.');
+    	formato = new DecimalFormat("#.00", separadoresPersonalizados);
     }
 
+    //cantidad de datos del archivo
     private int size() {
     	return vector_info.size();
     }
     
-    private Vector<Integer> getVectorCotizaciones(String file) {
+    //se obtiene los datos del archivo ordenados en un vector de integers
+    private Vector<Integer> get_vector_de_cotizaciones(String file) {
         
     	File archivo;
         FileReader fr;
@@ -45,15 +53,13 @@ public class Cotizacion {
         }
     }
     
-    //Este metodo devuelve la probabilidad de ocurrencias de acciones
-    //Termina con un tama;o menor al vector de cotizaciones ya que necesito comenzar 
-    //con un numero para saber si subio o bajo la accion.
-    
+    //devuelve una copia del vector integer de todas las cotizaciones
     public Vector<Integer> get_historial_cotizaciones(){
     	Object copy_vector = vector_info.clone();	
     	return (Vector<Integer>) copy_vector;
     }
     
+    //muestra el historial de todas las cotizaciones
     public void show_historial_cotizaciones(){
 	    for(float e:this.get_historial_cotizaciones()) {
 	    	System.out.println(e);
@@ -61,7 +67,10 @@ public class Cotizacion {
     	
     }
     
-    
+//    se obtiene el vector de probabilidad de ocurrecias donde 
+//    posicion 0 = baja
+//    posicion 1 = estable
+//    posicion 2 = alza
     public float[] get_probabilidad_de_ocurrencias(){
 
     	float array_prob[] = {0,0,0}; // Las posicion 0=baja , 1 = igual, 2= subio
@@ -82,24 +91,16 @@ public class Cotizacion {
     	return array_prob;
     }
     
+//    muestra el vector con las probabilidades de las ocurrencias
     public void show_probabilidad_de_ocurrencias() {
     	float ocurrencias[] = this.get_probabilidad_de_ocurrencias();
-    	DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-    	separadoresPersonalizados.setDecimalSeparator('.');
-    	DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
     	
     	System.out.println("Baja:"+formato.format(ocurrencias[0])+"%");
     	System.out.println("Estable:"+formato.format(ocurrencias[1])+"%");
     	System.out.println("Alza:"+formato.format(ocurrencias[2])+"%");
     }
-    
-    //Se puedo simular con el vector de probabilidad utilizando convergencia
-    //pero al tener el vector de simbolos tambien se puede estimar
-    //mejor seria simular un gran numero de casos.
+//  se obtiene la matriz condicional
     public float[][] get_matriz_condicional() {
-    	DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-    	separadoresPersonalizados.setDecimalSeparator('.');
-    	DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
     	
     	float mat_prob[][] = {{0,0,0},{0,0,0},{0,0,0}};
     	int[] cadena_de_simbolos = new int[this.size()];
@@ -115,30 +116,23 @@ public class Cotizacion {
     	}
     	
     	//al coincidir el lugar con el valor se puede generar la matriz de esta forma
-    	for(int i = 1;i<this.size();i++) {
+    	for(int i = 1;i<cadena_de_simbolos.length;i++) {
     		mat_prob[cadena_de_simbolos[i]][cadena_de_simbolos[i-1]] ++;
     	}
     	
-//    	float aux1[][] = this.get_matriz_conjunta();
-//       	float aux2[] = this.get_probabilidad_de_ocurrencias(); 	
-//
-//       	
-//    	for(int j =0;j<3;j++) {
-//    		for(int i=0;i<3;i++) {
-//    			mat_prob[i][j] = aux1[i][j] / aux2[j];
-//
-//    		}
-//    	}
-//    	System.out.println();
+    	for(int i = 0;i<3;i++) {
+        	for(int j = 0;j<3;j++) {
+        		mat_prob[j][i] = mat_prob[j][i]/999;
+        	}
+    	}
+ 
     	return mat_prob;
     	
     }
     
+//    se muestra la matriz condicional
     public void show_matriz_condicional() {
     	float aux[][] = this.get_matriz_condicional();
-    	DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-    	separadoresPersonalizados.setDecimalSeparator('.');
-    	DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
     	
     	for(int i=0 ;i<3;i++) {
     		System.out.println();
@@ -148,6 +142,7 @@ public class Cotizacion {
     	}
     }
     
+//    se obtiene la matriz conjunta
     public float[][] get_matriz_conjunta(){
     	float[][] aux1 = new float[3][3];
     	float[] aux2 = this.get_probabilidad_de_ocurrencias();
@@ -159,11 +154,8 @@ public class Cotizacion {
     	return aux1;
 	}
     
+//    se muestra la matriz conjunta
     public void show_matriz_conjunta() {
-    	
-    	DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-    	separadoresPersonalizados.setDecimalSeparator('.');
-    	DecimalFormat formato = new DecimalFormat("#.00", separadoresPersonalizados);
     	
     	float mat[][] = this.get_matriz_conjunta();
 		System.out.println("MATRIZ CONJUNTA");
