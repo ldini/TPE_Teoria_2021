@@ -15,7 +15,7 @@ public class Cotizacion {
 
 	//Inicializa el Vector con todos los datos del archivo y da formato a los decimales para que se muestre de una forma mas prolija
     public Cotizacion(String file) {
-    	vector_info = getVectorCotizaciones(file); 
+    	vector_info = get_vector_de_cotizaciones(file); 
     	separadoresPersonalizados = new DecimalFormatSymbols();
     	separadoresPersonalizados.setDecimalSeparator('.');
     	formato = new DecimalFormat("#.00", separadoresPersonalizados);

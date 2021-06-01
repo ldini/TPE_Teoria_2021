@@ -8,7 +8,7 @@ public class Main {
 	    Cotizacion BTC = new Cotizacion("C:\\Users\\Leandro\\Documents\\Teoria de la Informacion\\TPE_Teoria_2021\\Info\\BTC.txt");
 
 	    BTC.show_matriz_condicional();
-
+	    ETH.show_historial_cotizaciones();
 
     }
 }
