@@ -7,8 +7,11 @@ public class Main {
 	    Cotizacion ETH = new Cotizacion("C:\\Users\\Leandro\\Documents\\Teoria de la Informacion\\TPE_Teoria_2021\\Info\\ETH.txt");
 	    Cotizacion BTC = new Cotizacion("C:\\Users\\Leandro\\Documents\\Teoria de la Informacion\\TPE_Teoria_2021\\Info\\BTC.txt");
 
+//TODO: 1A
 	    BTC.show_matriz_condicional();
-	    ETH.show_historial_cotizaciones();
-
+	    ETH.show_matriz_condicional();
+//TODO: 1B
+	    
+	    System.out.println(BTC.calculate_media());
     }
 }

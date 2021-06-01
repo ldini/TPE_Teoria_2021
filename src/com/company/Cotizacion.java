@@ -167,5 +167,13 @@ public class Cotizacion {
     	}
     }
     
+    public float calculate_media() {
+    	int suma = 0;
+    	for(int value : this.vector_info)
+    		suma += value;
+    	return suma/this.size();
+    }
+    
+    
  
 }
