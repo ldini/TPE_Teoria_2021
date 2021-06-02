@@ -19,6 +19,7 @@ public class Cotizacion {
     	separadoresPersonalizados = new DecimalFormatSymbols();
     	separadoresPersonalizados.setDecimalSeparator('.');
     	formato = new DecimalFormat("#.00", separadoresPersonalizados);
+    	System.out.println("El temano es: "+ vector_info.size());
     }
 
     //cantidad de datos del archivo
@@ -174,6 +175,17 @@ public class Cotizacion {
     	return suma/this.size();
     }
     
+    public double calculate_varianza() {
+    	float media = this.calculate_media();
+    	float s2 = 0;
+    	for(int value : this.vector_info)
+    		s2 += Math.pow((value-media),2);
+    	return s2/(this.size()-1);
+    }
+    
+    public double calculate_desvio_estandar() {
+    	return Math.sqrt(calculate_varianza());
+    }
     
  
 }

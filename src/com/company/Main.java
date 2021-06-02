@@ -11,7 +11,7 @@ public class Main {
 	    BTC.show_matriz_condicional();
 	    ETH.show_matriz_condicional();
 //TODO: 1B
-	    
 	    System.out.println(BTC.calculate_media());
+	    System.out.println(BTC.calculate_desviacion_estandar());
     }
 }
