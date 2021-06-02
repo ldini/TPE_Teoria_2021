@@ -187,5 +187,9 @@ public class Cotizacion {
     	return Math.sqrt(calculate_varianza());
     }
     
+    public float calculate_coeficiente_de_variacion() {
+    	return (float) (this.calculate_desvio_estandar()/this.calculate_media());
+    }
+    
  
 }
