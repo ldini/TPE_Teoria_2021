@@ -10,8 +10,8 @@ public class Main {
 //TODO: 1A
 	    BTC.show_matriz_condicional();
 	    ETH.show_matriz_condicional();
-//TODO: 1B
-	    System.out.println(BTC.calculate_media());
-	    System.out.println(BTC.calculate_desviacion_estandar());
+//TODO: 1B - Al usar valores los valores del documento queda por sentado que trabajamos con valores muestrales.
+	    System.out.println(BTC.calculate_correlacion_lineal(ETH)); // deberia de ser 1, en el caso de usar ambas monedas iguales, redondeamos esta algo mal o dejamos tal cual?  
+	    
     }
 }

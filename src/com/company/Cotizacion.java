@@ -191,5 +191,22 @@ public class Cotizacion {
     	return (float) (this.calculate_desvio_estandar()/this.calculate_media());
     }
     
- 
+    public float calculate_covarianza(Cotizacion cot) {
+    	Vector<Integer> y = cot.get_historial_cotizaciones();
+    	float cov_xy = 0;
+    	float media_x = this.calculate_media();
+    	float media_y = cot.calculate_media();
+    	int i = 0;
+    	for(Integer x : this.vector_info) {
+    		cov_xy += ((x-media_x)*(y.get(i)-media_y));
+    		i++;
+    	}
+    	
+    	return cov_xy/this.size();
+    }
+    
+    public float calculate_correlacion_lineal(Cotizacion cot) {
+    	float cov_xy = this.calculate_covarianza(cot);
+    	return (float) (cov_xy/(this.calculate_desvio_estandar()*cot.calculate_desvio_estandar()));
+    }
 }
