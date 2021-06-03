@@ -72,7 +72,7 @@ public class Cotizacion {
 //    posicion 0 = baja
 //    posicion 1 = estable
 //    posicion 2 = alza
-    public float[] get_probabilidad_de_ocurrencias(){
+    public float[] get_vector_estacionario(){
 
     	float array_prob[] = {0,0,0}; // Las posicion 0=baja , 1 = igual, 2= subio
 
@@ -94,7 +94,7 @@ public class Cotizacion {
     
 //    muestra el vector con las probabilidades de las ocurrencias
     public void show_probabilidad_de_ocurrencias() {
-    	float ocurrencias[] = this.get_probabilidad_de_ocurrencias();
+    	float ocurrencias[] = this.get_vector_estacionario();
     	
     	System.out.println("Baja:"+formato.format(ocurrencias[0])+"%");
     	System.out.println("Estable:"+formato.format(ocurrencias[1])+"%");
@@ -146,7 +146,7 @@ public class Cotizacion {
 //    se obtiene la matriz conjunta
     public float[][] get_matriz_conjunta(){
     	float[][] aux1 = new float[3][3];
-    	float[] aux2 = this.get_probabilidad_de_ocurrencias();
+    	float[] aux2 = this.get_vector_estacionario();
     	for(int i =0;i<aux2.length;i++) {
     		for(int j=0;j<aux2.length;j++) {
     			aux1[i][j] = (float)(aux2[i]*aux2[j]);
