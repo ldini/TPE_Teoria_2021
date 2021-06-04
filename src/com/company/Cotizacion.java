@@ -72,7 +72,10 @@ public class Cotizacion {
 //    posicion 0 = baja
 //    posicion 1 = estable
 //    posicion 2 = alza
-    public float[] get_vector_estacionario(){
+    
+//TODO: Aclaracion: al calcularse el este vector con una muestra no se asegura que la muestra sea suficiente para 
+//		llegar a un vector en estado estacionario.
+    public float[] calculate_distribucion_de_probabilidades(){
 
     	float array_prob[] = {0,0,0}; // Las posicion 0=baja , 1 = igual, 2= subio
 
@@ -94,7 +97,7 @@ public class Cotizacion {
     
 //    muestra el vector con las probabilidades de las ocurrencias
     public void show_probabilidad_de_ocurrencias() {
-    	float ocurrencias[] = this.get_vector_estacionario();
+    	float ocurrencias[] = this.calculate_distribucion_de_probabilidades();
     	
     	System.out.println("Baja:"+formato.format(ocurrencias[0])+"%");
     	System.out.println("Estable:"+formato.format(ocurrencias[1])+"%");
@@ -123,7 +126,7 @@ public class Cotizacion {
     	
     	for(int i = 0;i<3;i++) {
         	for(int j = 0;j<3;j++) {
-        		mat_prob[j][i] = mat_prob[j][i]/999;
+        		mat_prob[j][i] = mat_prob[j][i]/this.size();
         	}
     	}
  
@@ -146,7 +149,7 @@ public class Cotizacion {
 //    se obtiene la matriz conjunta
     public float[][] get_matriz_conjunta(){
     	float[][] aux1 = new float[3][3];
-    	float[] aux2 = this.get_vector_estacionario();
+    	float[] aux2 = this.calculate_distribucion_de_probabilidades();
     	for(int i =0;i<aux2.length;i++) {
     		for(int j=0;j<aux2.length;j++) {
     			aux1[i][j] = (float)(aux2[i]*aux2[j]);
@@ -208,5 +211,50 @@ public class Cotizacion {
     public float calculate_correlacion_lineal(Cotizacion cot) {
     	float cov_xy = this.calculate_covarianza(cot);
     	return (float) (cov_xy/(this.calculate_desvio_estandar()*cot.calculate_desvio_estandar()));
+    }
+    
+    public static float[][] multiplicar_matrices(float[][] m1, float[][] m2) {
+        float[][] mr = new float[m1.length][m2[0].length];
+        if (m1[0].length == m2.length) {
+            for (int i = 0; i < m1.length; i++) {
+                for (int j = 0; j < m2[0].length; j++) {
+                    for (int k = 0; k < m1[0].length; k++) {
+                        mr[i][j] += m1[i][k] * m2[k][j];
+                    }
+                }
+            }
+        }
+        return mr;
+    }
+    
+    public static float[][] pow_matriz(float[][] mat,int exponente){
+    	float[][] mr = new float[mat.length][mat[0].length];
+    	for(int i = 0; i<exponente;i++) {
+    		mr = multiplicar_matrices(mat, mat);
+    	}
+    	return mr;
+    }
+    
+    public float[] calculate_vector_de_estado_inicial() {
+    	float[] vec_i = {0,0,0};
+		if(vector_info.get(0) > vector_info.get(1))
+			vec_i[0] = 1;
+		else if(vector_info.get(0) < vector_info.get(1))
+			vec_i[2] = 1;
+		else
+			vec_i[1] = 1;   		
+    	return vec_i;
+    }
+    
+    public float[] calculate_vector_de_estado_t(int t) {
+        float[] vec_t = new float[3];
+        float[] vec_i = calculate_vector_de_estado_inicial();
+        float[][] mat_aux = pow_matriz(get_matriz_condicional(), t+1);
+        for(int i =0;i<3;i++) {
+        	for(int j=0;j<3;j++) {
+        		vec_t[i] = mat_aux[i][j]*vec_i[j];
+        	}
+        }
+        return vec_t;
     }
 }
