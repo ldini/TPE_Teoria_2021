@@ -12,11 +12,13 @@ public class main {
 	    System.out.println("Matriz de ETH");
 	    ETH.show_matriz_condicional();
 //TODO: 1B - Al usar valores los valores del documento queda por sentado que trabajamos con valores muestrales.
-	    System.out.println("Correlacion: ");
-	    System.out.print(BTC.calculate_correlacion_lineal(BTC)); // por convertir bouble a float de pierde presicion y no da 1.  
+	   // System.out.println("Correlacion: ");
+	   // System.out.print(BTC.calculate_correlacion_lineal(BTC)); // por convertir bouble a float de pierde presicion y no da 1.  
 	    correlacion aux = new correlacion();
 	    System.out.println();
-	    System.out.println("Correlacion cruzada: "+ aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200));
-    
+	    for(int i=0; i<4;i++) {
+	    	
+	    	System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200)[i]);
+	    }
     }
 }

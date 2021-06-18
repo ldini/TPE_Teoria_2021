@@ -295,6 +295,7 @@ public int[] getVectorCotizacion() {
 	int[] aux = new int[vector_info.size()];
 	for(int i=0; i< vector_info.size(); i++) {
 		aux[i]= vector_info.get(i);
+		//System.out.println(vector_info.get(i));
 	}
 	return aux;
 }

@@ -5,9 +5,11 @@ public class correlacion {
 
 		int iteraciones = 0;
 		double correlacionAcumulada = 0;
+		
 		for (int i = 0; i < 999-tau; i++){
 			correlacionAcumulada = correlacionAcumulada + vector_1[i] * vector_2[i+tau];
 			iteraciones++;
+		
 		}
 		return correlacionAcumulada/iteraciones;
 	}
@@ -21,17 +23,16 @@ public class correlacion {
 		//int tauRetorno = 0;
 		for (int tau = valor_tau_min; tau <= valor_tau_max; tau+=aumentarTau){
 			correlacionAcumulada = calcular_correlacion(vector_1, vector_2, tau);
+			//System.out.println(correlacionAcumulada);
 			if (correlacionAcumulada > correlacionMaxima){
+				
 				correlacionMaxima = correlacionAcumulada;
 				//tauRetorno = tau;
 			}
-			arregloResultado[i] = correlacionMaxima;
-			i += 1;
+			arregloResultado[i] = correlacionAcumulada;
+			i++;
 		}
-
-		for (int j = 0; j < 5; j++){
-			System.out.println("Correlacion cruzada: " + arregloResultado[j]);
-		}
+		
 		return arregloResultado;
 	}
 
