@@ -1,0 +1,2 @@
+Sobre la carpeta del proyecto, iniciar la consola del sistema y escribir la siguiente linea de comandos:
+java -jar Ejecutable_Gurpo_8.jar
