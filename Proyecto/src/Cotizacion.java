@@ -10,6 +10,8 @@ public class Cotizacion {
     private Vector<Integer> vector_info;
 	DecimalFormatSymbols separadoresPersonalizados;
 	DecimalFormat formato;
+	private final int MAX_i=3;
+	private final int MAX_j=3;
 
 	//Inicializa el Vector con todos los datos del archivo y da formato a los decimales para que se muestre de una forma mas prolija
     public Cotizacion(String file) {
@@ -264,10 +266,10 @@ public class Cotizacion {
         }
         return vec_t;
     }
-}
+
 
 // AUTOCORRELACION GONZALO
-public int calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
+public double calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
 	float autocorrelacion [] = new float[valor_tau_max+1];
 	int tau = valor_tau_min;
 	int tau_actual = 0;
@@ -287,4 +289,20 @@ public int calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
 		System.out.println(autocorrelacion[i] +" ");
 	}
 	return 0;
+}
+
+public double[] getCorrelacionCruzada(double[][] Matriz_1, double[][] Matriz_2,int valor_tau_min,int valor_tau_max) {
+		double correlacionCruzada =0;
+		double[] arrgloCorrelacionesCruzadas = new double[5];
+			for(int j=0; j< MAX_j; j++)
+			{
+				correlacionCruzada+=Matriz_1[i][j]*Matriz_2[i][j];
+			}
+		int tau=valor_tau_min;
+		for(tau; tau< valor_tau_max; tau++) {
+			arrgloCorrelacionesCruzadas[]
+		}
+		return 
+}
+
 }
