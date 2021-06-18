@@ -291,18 +291,11 @@ public double calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
 	return 0;
 }
 
-public double[] getCorrelacionCruzada(double[][] Matriz_1, double[][] Matriz_2,int valor_tau_min,int valor_tau_max) {
-		double correlacionCruzada =0;
-		double[] arrgloCorrelacionesCruzadas = new double[5];
-			for(int j=0; j< MAX_j; j++)
-			{
-				correlacionCruzada+=Matriz_1[i][j]*Matriz_2[i][j];
-			}
-		int tau=valor_tau_min;
-		for(tau; tau< valor_tau_max; tau++) {
-			arrgloCorrelacionesCruzadas[]
-		}
-		return 
+public int[] getVectorCotizacion() {
+	int[] aux = new int[vector_info.size()];
+	for(int i=0; i< vector_info.size(); i++) {
+		aux[i]= vector_info.get(i);
+	}
+	return aux;
 }
-
 }

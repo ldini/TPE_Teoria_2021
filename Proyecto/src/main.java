@@ -14,7 +14,9 @@ public class main {
 //TODO: 1B - Al usar valores los valores del documento queda por sentado que trabajamos con valores muestrales.
 	    System.out.println("Correlacion: ");
 	    System.out.print(BTC.calculate_correlacion_lineal(BTC)); // por convertir bouble a float de pierde presicion y no da 1.  
+	    correlacion aux = new correlacion();
 	    System.out.println();
-	    System.out.println("Correlacion cruzada: "+ ETH.getCorrelacionCruzada(ETH.get_matriz_condicional(), BTC.get_matriz_condicional()));
+	    System.out.println("Correlacion cruzada: "+ aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200));
+    
     }
 }
