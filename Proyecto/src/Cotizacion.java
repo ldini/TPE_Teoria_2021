@@ -265,3 +265,26 @@ public class Cotizacion {
         return vec_t;
     }
 }
+
+// AUTOCORRELACION GONZALO
+public int calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
+	float autocorrelacion [] = new float[valor_tau_max+1];
+	int tau = valor_tau_min;
+	int tau_actual = 0;
+	int tamanio = vector_info.size();
+	while (tau <= valor_tau_max){
+		while (tau + tau_actual < tamanio){
+			int s1 = vector_info.get(tau_actual);
+			int s2 = vector_info.get(tau_actual+tau);
+			tau_actual += 1;
+			autocorrelacion[tau] += s1 * s2;
+		}
+		autocorrelacion[tau] /= tau_actual;
+		tau_actual = 0;
+		tau += 1;
+	}
+	for (int i = 1; i < 50; i++){ // Arranca en 1, porque el primer valor muestra 0
+		System.out.println(autocorrelacion[i] +" ");
+	}
+	return 0;
+}
