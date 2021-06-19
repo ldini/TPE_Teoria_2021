@@ -21,5 +21,9 @@ public class main {
 	    	System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(ETH.getVectorCotizacion(), BTC.getVectorCotizacion(), 0, 200)[i]);
 	      	//System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200)[i]);
 	    }
+	    
+	    
+	    ETH.graficate();
+	    
     }
 }

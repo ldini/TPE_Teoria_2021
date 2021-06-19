@@ -7,6 +7,7 @@ import java.io.FileReader;
 import javax.swing.JOptionPane;
 
 public class Cotizacion {
+	private String name = null;
     private Vector<Integer> vector_info;
 	DecimalFormatSymbols separadoresPersonalizados;
 	DecimalFormat formato;
@@ -33,10 +34,10 @@ public class Cotizacion {
     	File archivo;
         FileReader fr;
         BufferedReader br;
-        Vector<Integer> vector_aux = new Vector<Integer>();
-        
+        Vector<Integer> vector_aux = new Vector<Integer>();        
         try {
             archivo = new File(file);
+            this.name = archivo.getName();
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String linea;
@@ -298,5 +299,9 @@ public int[] getVectorCotizacion() {
 		//System.out.println(vector_info.get(i));
 	}
 	return aux;
+}
+
+public void graficate() {
+    Grafico g = new Grafico(this.get_historial_cotizaciones(),name);
 }
 }

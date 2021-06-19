@@ -6,5 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Leandro/Documents/Teoria de la Informacion/TPE_Teoria_2021/jcommon-1.0.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Leandro/Documents/Teoria de la Informacion/TPE_Teoria_2021/jfreechart-1.0.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
