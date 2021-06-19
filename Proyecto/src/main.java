@@ -14,7 +14,7 @@ public class main {
 //TODO: 1B - Al usar valores los valores del documento queda por sentado que trabajamos con valores muestrales.
 	   // System.out.println("Correlacion: ");
 	   // System.out.print(BTC.calculate_correlacion_lineal(BTC)); // por convertir bouble a float de pierde presicion y no da 1.  
-	    correlacion aux = new correlacion();
+	    Correlacion aux = new Correlacion();
 	    System.out.println();
 	    for(int i=0; i<5;i++) {
 	    	

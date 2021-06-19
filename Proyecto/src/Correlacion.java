@@ -1,5 +1,5 @@
 
-public class correlacion {
+public class Correlacion {
 	 
 	public double calcular_correlacion(int[] vector_1,int[] vector_2,int tau){
 
