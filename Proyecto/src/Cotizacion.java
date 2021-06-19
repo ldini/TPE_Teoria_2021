@@ -11,8 +11,7 @@ public class Cotizacion {
     private Vector<Integer> vector_info;
 	DecimalFormatSymbols separadoresPersonalizados;
 	DecimalFormat formato;
-	private final int MAX_i=3;
-	private final int MAX_j=3;
+
 
 	//Inicializa el Vector con todos los datos del archivo y da formato a los decimales para que se muestre de una forma mas prolija
     public Cotizacion(String file) {
