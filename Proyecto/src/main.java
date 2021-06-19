@@ -16,9 +16,10 @@ public class main {
 	   // System.out.print(BTC.calculate_correlacion_lineal(BTC)); // por convertir bouble a float de pierde presicion y no da 1.  
 	    correlacion aux = new correlacion();
 	    System.out.println();
-	    for(int i=0; i<4;i++) {
+	    for(int i=0; i<5;i++) {
 	    	
-	    	System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200)[i]);
+	    	System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(ETH.getVectorCotizacion(), BTC.getVectorCotizacion(), 0, 200)[i]);
+	      	//System.out.println("Correlacion cruzada: "+aux.calcular_correlacion_cruzada(BTC.getVectorCotizacion(), ETH.getVectorCotizacion(), 0, 200)[i]);
 	    }
     }
 }

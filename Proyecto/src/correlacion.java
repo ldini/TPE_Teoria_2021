@@ -32,7 +32,7 @@ public class correlacion {
 			arregloResultado[i] = correlacionAcumulada;
 			i++;
 		}
-		
+		// falta sacar desvio para cada tau, para el coeficiente de correalcion cruzada
 		return arregloResultado;
 	}
 
