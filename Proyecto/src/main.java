@@ -36,18 +36,11 @@ public class main {
 		ETHCodificadoRLC.codificarCotizacion(ETH.getVectorCotizacion(), 1000);
 		List<parCodificado> codificacion = ETHCodificadoRLC.getCodificacion();
 		System.out.println(codificacion.size());
-		int aux3 =0;
-		int aux4 =0;
-		for(int i=0; i<codificacion.size();i++) {
-			aux3+=codificacion.get(i).getLongSecuencia();				
-		}
+		System.out.println("BTC codificado RLC");
 		RLC BTCCodificadoRLC = new RLC();
 		BTCCodificadoRLC.codificarCotizacion(BTC.getVectorCotizacion(), 1000);
 		List<parCodificado> codificacion2 = BTCCodificadoRLC.getCodificacion();
 		System.out.println(codificacion2.size());
-		for(int i=0; i<codificacion2.size();i++) {
-			aux4+=codificacion2.get(i).getLongSecuencia();		
-				
-		}
-			}
+	
+	}
 }
