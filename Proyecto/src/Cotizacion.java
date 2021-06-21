@@ -7,7 +7,7 @@ import java.io.FileReader;
 import javax.swing.JOptionPane;
 
 public class Cotizacion {
-	private String name = null;
+	
     private Vector<Integer> vector_info;
 	DecimalFormatSymbols separadoresPersonalizados;
 	DecimalFormat formato;
@@ -19,7 +19,6 @@ public class Cotizacion {
     	separadoresPersonalizados = new DecimalFormatSymbols();
     	separadoresPersonalizados.setDecimalSeparator('.');
     	formato = new DecimalFormat("#.00", separadoresPersonalizados);
-    	System.out.println("El temano es: "+ vector_info.size());
     }
 
     //cantidad de datos del archivo
@@ -36,7 +35,7 @@ public class Cotizacion {
         Vector<Integer> vector_aux = new Vector<Integer>();        
         try {
             archivo = new File(file);
-            this.name = archivo.getName();
+          
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String linea;
@@ -178,6 +177,7 @@ public class Cotizacion {
     		}
     		System.out.println();
     	}
+   
     }
     
     public double calculate_media() {
@@ -267,8 +267,6 @@ public class Cotizacion {
         return vec_t;
     }
 
-
-// AUTOCORRELACION GONZALO
 public double calcular_autocorrelacion(int valor_tau_min, int valor_tau_max){
 	float autocorrelacion [] = new float[valor_tau_max+1];
 	int tau = valor_tau_min;
@@ -298,9 +296,5 @@ public int[] getVectorCotizacion() {
 		//System.out.println(vector_info.get(i));
 	}
 	return aux;
-}
-
-public void graficate() {
-    Grafico g = new Grafico(this.get_historial_cotizaciones(),name);
 }
 }
